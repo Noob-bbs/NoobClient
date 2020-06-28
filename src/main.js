@@ -6,7 +6,7 @@ import axios from 'axios'
 // 全局注册，之后可在其他组件中通过 this.$axios 发送数据
 //注意修改原型链的用途
 Vue.prototype.$axios = axios
-axios.defaults.baseURL = 'http://localhost:8080/api'
+axios.defaults.baseURL = '/api'
 Vue.config.productionTip = false
 
 new Vue({

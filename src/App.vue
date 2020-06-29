@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-import NavBar from "@/components/NavBar.vue";
+import NavBar from "@/components/common/NavBar.vue";
 export default {
     components: { NavBar }
 };
@@ -20,5 +20,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     text-align: center;
+}
+::-webkit-scrollbar {
+    width: 0 !important;
 }
 </style>

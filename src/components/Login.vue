@@ -129,6 +129,7 @@ export default {
                             setTimeout(() => {
                                 this.mode = "login";
                             }, 2500);
+                            this.$store.commit('login',this.user)
                             this.$router.replace({ path: "/" });
                             console.log("登陆成功");
                         } else {

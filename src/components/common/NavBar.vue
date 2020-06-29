@@ -5,12 +5,13 @@
                 <router-link to="/" class="nav-brand-link">菜鸟论坛</router-link>
             </div>
         </el-col>
-        <el-col :offset="2" :span="12">
+        <el-col :offset="1" :span="12">
             <el-menu
                 :default-active="activeIndex"
                 class="el-menu-demo"
                 mode="horizontal"
                 @select="handleSelect"
+                router
             >
                 <el-menu-item index="1">
                     <i class="el-icon-edit"></i>主页
@@ -61,6 +62,7 @@ export default {
 
 <style>
 .nav-brand {
+    margin-left: 20px;
     text-align: center;
     padding: 1em;
 }
@@ -70,6 +72,7 @@ export default {
     text-decoration: none;
     text-decoration-line: none;
     color: grey;
+    font-weight: bold;
 }
 
 .nav-account {

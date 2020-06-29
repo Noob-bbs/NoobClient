@@ -32,12 +32,18 @@
                 </el-menu-item>
             </el-menu>
         </el-col>
-        <el-col :span="6">
-            <div class="nav-account">
+        <el-col :span="6" :offset="1">
+            <div class="nav-account" v-if="!this.$store.state.loginStatus">
                 <el-button type="text">登录</el-button>
                 <el-button type="text">注册</el-button>
-                <el-avatar class="nav-avatar" :size="30" :src="circleUrl"></el-avatar>
             </div>
+            <el-dropdown @command="handleCommand" style="margin-top: 15px;" v-else>
+                <el-avatar class="nav-avatar" :size="35" :src="circleUrl"></el-avatar>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+                    <el-dropdown-item command="e" divided>蚵仔煎</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
         </el-col>
     </el-row>
 </template>
@@ -48,6 +54,21 @@ export default {
     methods: {
         handleSelect(key, keyPath) {
             console.log(key, keyPath);
+        },
+        handleCommand(command) {
+            console.log(command);
+            if (command === "logout") {
+                this.$axios
+                    .get("/logout")
+                    .then(response => {
+                        this.$message.info(response.data.data);
+                        this.$store.commit("logout");
+                        console.log("成功发送请求" + JSON.stringify(response));
+                    })
+                    .catch(failReponse => {
+                        console.log("错误" + failReponse);
+                    });
+            }
         }
     },
     data() {

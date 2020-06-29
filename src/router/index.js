@@ -25,6 +25,7 @@ Vue.use(VueRouter)
   },
   {
     path: '/index',
+    redirect: '/',
     name: 'AppIndex',
     component: AppIndex
   }

@@ -8,10 +8,18 @@
                     >
                         <el-button
                             type="primary"
+                            style="margin-top: 10px; margin-left: 20%;"
+                            
+                            v-if="!this.$store.state.loginStatus"
+                            @click="changeModeL"
+                        >登录以发表主题</el-button>
+                        <el-button
+                            v-else
+                            type="primary"
                             @click="addPost = true"
                             style="margin: 10px 160px;"
                         >发表主题</el-button>
-                        <el-dropdown @command="handleTopicSelect" style="margin-left: 240px;">
+                        <el-dropdown @command="handleTopicSelect" style="margin-left: 35%;">
                             <el-button plain>
                                 {{showTopic}}
                                 <i class="el-icon-arrow-down el-icon--right"></i>
@@ -23,7 +31,7 @@
                                 <el-dropdown-item command="最近回复主题">最近回复主题</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
-                        <el-dropdown @command="handleSectionSelect">
+                        <el-dropdown @command="handleSectionSelect" style="margin-left: 10px;">
                             <el-button plain>
                                 {{showSection}}
                                 <i class="el-icon-arrow-down el-icon--right"></i>
@@ -46,7 +54,7 @@
                     </el-main>
                 </el-container>
             </el-col>
-            <el-col :span="6">AAAA</el-col>
+            <el-col :span="6" style="border: 1px solid black; margin-top: 20px;">AAAA</el-col>
         </el-row>
         <AddPost :show="addPost" @cancelEvent="handleCancelEvent"></AddPost>
     </div>
@@ -71,6 +79,9 @@ export default {
         },
         handleSectionSelect(command) {
             console.log("command:" + command);
+        },
+        changeModeL() {
+            this.$router.replace({ path: "/login" });
         },
         handleCancelEvent() {
             this.$confirm("确认关闭？")

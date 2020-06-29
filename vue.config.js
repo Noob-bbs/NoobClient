@@ -6,10 +6,10 @@ module.exports = {
                 ws: true,  // proxy websockets
                 changeOrigin: true,  // needed for virtual hosted sites
                 pathRewrite: {
-                    '^/api': ''  // rewrite path
+                    '^/api': '/api'  // rewrite path
                 }
             }
         }, 
-        port: 8888
+        port: 80
     }
 };

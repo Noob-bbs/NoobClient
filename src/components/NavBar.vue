@@ -1,51 +1,43 @@
 <template>
-    <div>
-        <b-navbar toggleable="lg" type="dark" variant="success">
-            <b-container>
-                <b-navbar-brand href="#">Mealzers</b-navbar-brand>
-                <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-                <b-collapse id="nav-collapse" is-nav>
-                    <!-- Right aligned nav items -->
-                    <b-navbar-nav class="ml-auto">
-                        <b-nav-form>
-                            <b-form-input
-                                size="sm"
-                                class="mr-sm-2"
-                                placeholder="Search for a meal"
-                                v-model="meal"
-                            ></b-form-input>
-                            <b-button
-                                size="sm"
-                                class="my-2 my-sm-0"
-                                type="submit"
-                                @click.prevent="getMeal"
-                            >Search</b-button>
-                        </b-nav-form>
-                        <b-nav-item-dropdown right>
-                            <!-- Using 'button-content' slot -->
-                            <template slot="button-content">
-                                <em>User</em>
-                            </template>
-                            <b-dropdown-item href="#">Profile</b-dropdown-item>
-                            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-                        </b-nav-item-dropdown>
-                    </b-navbar-nav>
-                </b-collapse>
-            </b-container>
-        </b-navbar>
-    </div>
+    <el-menu
+        :default-active="activeIndex"
+        class="el-menu-demo"
+        mode="horizontal"
+        @select="handleSelect"
+    >
+        <el-menu-item index="1">处理中心</el-menu-item>
+        <el-submenu index="2">
+            <template slot="title">我的工作台</template>
+            <el-menu-item index="2-1">选项1</el-menu-item>
+            <el-menu-item index="2-2">选项2</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-submenu index="2-4">
+                <template slot="title">选项4</template>
+                <el-menu-item index="2-4-1">选项1</el-menu-item>
+                <el-menu-item index="2-4-2">选项2</el-menu-item>
+                <el-menu-item index="2-4-3">选项3</el-menu-item>
+            </el-submenu>
+        </el-submenu>
+        <el-menu-item index="3" disabled>消息中心</el-menu-item>
+        <el-menu-item index="4">
+            <a href="https://www.ele.me" target="_blank">订单管理</a>
+        </el-menu-item>
+    </el-menu>
 </template>
+
 <script>
 export default {
-    data() {
-        return {
-            meal: ''
-        }
+    name: 'NavBar',
+    methods:{
+        handleSelect() {}
     },
-  methods: {
-    getMeal() {
-    
+    data(){
+        return {
+            activeIndex: '1'
+        }
     }
-  }
-}    
+};
 </script>
+
+<style>
+</style>

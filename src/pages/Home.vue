@@ -9,9 +9,9 @@
                         <el-button
                             type="primary"
                             @click="addPost = true"
-                            style="margin: 10px 100px;"
+                            style="margin: 10px 160px;"
                         >发表主题</el-button>
-                        <el-dropdown @command="handleTopicSelect" style="margin-left: 160px;">
+                        <el-dropdown @command="handleTopicSelect" style="margin-left: 240px;">
                             <el-button plain>
                                 {{showTopic}}
                                 <i class="el-icon-arrow-down el-icon--right"></i>

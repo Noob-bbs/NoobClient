@@ -13,7 +13,7 @@
                 @select="handleSelect"
                 router
             >
-                <el-menu-item index="1">
+                <el-menu-item index="index">
                     <i class="el-icon-edit"></i>主页
                 </el-menu-item>
                 <el-submenu index="2">

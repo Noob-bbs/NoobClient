@@ -21,10 +21,10 @@ export default {
                 .get(`/topic/list?pageSize=10&pageNum=${this.page}`)
                 .then(response => {
                     if (response.data.statusCode == 200) {
-                        console.log(
-                            "自动获取" +
-                                JSON.stringify(response.data.data.topicList)
-                        );
+                        //console.log(
+                        //    "自动获取" +
+                        //       JSON.stringify(response.data.data.topicList)
+                        //);
                         this.topicList = response.data.data.topicList;
                     } else this.$message.error("获取话题列表失败" + response);
                 })

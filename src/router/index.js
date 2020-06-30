@@ -5,6 +5,7 @@ import AppIndex from '../components/home/AppIndex.vue'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import Home from '@/pages/Home.vue'
+import Topic from '@/pages/Topic.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -28,6 +29,11 @@ Vue.use(VueRouter)
     redirect: '/',
     name: 'AppIndex',
     component: AppIndex
+  },
+  {
+    path: '/topic/:id',
+    name: 'Topic',
+    component: Topic
   }
 ]
 

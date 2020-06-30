@@ -5,7 +5,7 @@
             <el-input type="text" v-model="user.account" auto-complete="off" placeholder="账号"></el-input>
         </el-form-item>
         <el-form-item>
-            <el-input type="email" v-model="user.nick" auto-complete="off" placeholder="昵称"></el-input>
+            <el-input type="text" v-model="user.nick" auto-complete="off" placeholder="昵称"></el-input>
         </el-form-item>
         <el-form-item>
             <el-input type="email" v-model="user.email" auto-complete="off" placeholder="邮箱"></el-input>
@@ -52,6 +52,7 @@ export default {
                 this.$message.error("信息不完整，无法注册");
             } else {
                 this.loading = true;
+                console.log("注册:\n" + JSON.stringify(this.user));
                 this.$axios
                     .post("/register", {
                         account: this.user.account,

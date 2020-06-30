@@ -8,7 +8,7 @@
                     >
                         <el-button
                             type="primary"
-                            style="margin: 10px 0px  10px 20%;"
+                            style="margin: 10px 0px  10px 15%;"
                             
                             v-if="!this.$store.state.loginStatus"
                             @click="changeModeL"
@@ -16,8 +16,8 @@
                         <el-button
                             v-else
                             type="primary"
-                            @click="addPost = true"
-                            style="margin: 10px 0px  10px 30%;"
+                            @click="addTopic = true"
+                            style="margin: 10px 0px  10px 15%;"
                         >发表主题</el-button>
                         <el-dropdown @command="handleTopicSelect" style="margin-left: 35%;">
                             <el-button plain>
@@ -39,37 +39,37 @@
                             <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item>黄金糕</el-dropdown-item>
                                 <el-dropdown-item>狮子头</el-dropdown-item>
-                                <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                                <el-dropdown-item>双皮奶</el-dropdown-item>
-                                <el-dropdown-item>蚵仔煎</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-header>
-                    <el-aside class="side-bar" style="width: 200px;margin-top: 20px">
+                    <el-aside class="side-bar" style="width: 200px;margin-top: 20px;">
                         <switch></switch>
                         <!--<SideMenu></SideMenu>-->
                     </el-aside>
-                    <el-main>
-                        <!--<posts></posts>-->
+                    <el-main style="border: 2px solid gray; margin-left: 15%;">
+                        <!--帖子列表信息-->
+                        <TopicList/>
                     </el-main>
                 </el-container>
             </el-col>
-            <el-col :span="6" style="border: 1px solid black; margin-top: 20px;">AAAA</el-col>
+            <el-col :span="6" style="border: 1px solid black; margin-top: 7%;">AAAA</el-col>
         </el-row>
-        <AddPost :show="addPost" @cancelEvent="handleCancelEvent"></AddPost>
+        <AddTopic :show="addTopic" @cancelEvent="handleCancelEvent" @closeDrawer="addTopic = false"></AddTopic>
     </div>
 </template>
 
 <script>
-import AddPost from "@/components/home/AddPost.vue";
+import AddTopic from "@/components/home/AddTopic.vue";
+import TopicList from "@/components/home/TopicList.vue"
+
 export default {
     name: "Home",
-    components: { AddPost },
+    components: { AddTopic,TopicList },
     data() {
         return {
             showTopic: "全部主题",
             showSection: "全部板块",
-            addPost: false
+            addTopic: false
         };
     },
     methods: {
@@ -87,7 +87,7 @@ export default {
             this.$confirm("确认关闭？")
                 .then(response => {
                     console.log("关闭编辑框" + response);
-                    this.addPost = false;
+                    this.addTopic = false;
                 })
                 .catch(response => {
                     console.log("取消关闭编辑框" + response);

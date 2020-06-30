@@ -73,7 +73,7 @@ export default {
                                 duration: 5000
                             });
                             this.loading = false;
-                            this.$store.commit("login", this.user);
+                            this.$store.commit("login", successResponse.data.data);
                             this.$router.replace({ path: "/" });
                             console.log("登陆成功");
                         } else {

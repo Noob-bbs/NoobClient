@@ -5,15 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: {
-      account: window.localStorage.getItem('user' || '[]') == null ? '' : JSON.parse(window.localStorage.getItem('user' || '[]')).account
-    },
+    user: window.localStorage.getItem('user') == null ? '' : JSON.parse(window.localStorage.getItem('user')),
     loginStatus: false
   },
   mutations: {
     login (state, user) {
       state.user = user
       window.localStorage.setItem('user', JSON.stringify(user))
+      console.log("储存USER：" + JSON.stringify(state.user))
       state.loginStatus = true
     },
     logout (state){

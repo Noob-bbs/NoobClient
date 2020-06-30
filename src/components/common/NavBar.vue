@@ -83,7 +83,7 @@ export default {
 
 <style>
 .nav-brand {
-    margin-left: 20px;
+    margin-left: 1%;
     text-align: center;
     padding: 1em;
 }

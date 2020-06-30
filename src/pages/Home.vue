@@ -8,7 +8,7 @@
                     >
                         <el-button
                             type="primary"
-                            style="margin-top: 10px; margin-left: 20%;"
+                            style="margin: 10px 0px  10px 20%;"
                             
                             v-if="!this.$store.state.loginStatus"
                             @click="changeModeL"
@@ -17,7 +17,7 @@
                             v-else
                             type="primary"
                             @click="addPost = true"
-                            style="margin: 10px 160px;"
+                            style="margin: 10px 0px  10px 30%;"
                         >发表主题</el-button>
                         <el-dropdown @command="handleTopicSelect" style="margin-left: 35%;">
                             <el-button plain>
@@ -31,7 +31,7 @@
                                 <el-dropdown-item command="最近回复主题">最近回复主题</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
-                        <el-dropdown @command="handleSectionSelect" style="margin-left: 10px;">
+                        <el-dropdown @command="handleSectionSelect" style="margin-left: 1%;">
                             <el-button plain>
                                 {{showSection}}
                                 <i class="el-icon-arrow-down el-icon--right"></i>

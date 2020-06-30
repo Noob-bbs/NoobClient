@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: window.localStorage.getItem('user') == null ? '' : JSON.parse(window.localStorage.getItem('user')),
-    loginStatus: false
+    loginStatus: false,
+    topicListUpdate: false
   },
   mutations: {
     login (state, user) {
@@ -18,6 +19,10 @@ export default new Vuex.Store({
     logout (state){
       state.loginStatus = false
       window.localStorage.removeItem('user')
+    },
+    topicListUpdate(state, ifNeed){
+      console.log("修改ifneed" + ifNeed)
+      state.topicListUpdate = ifNeed
     }
   }
 })

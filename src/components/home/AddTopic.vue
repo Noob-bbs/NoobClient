@@ -144,6 +144,7 @@ export default {
                                 content: "",
                                 tags: []
                             };
+                            this.$store.commit("topicListUpdate", true);
                         } else this.$message.error("发帖失败" + response.data);
                         this.$emit("closeDrawer");
                     })

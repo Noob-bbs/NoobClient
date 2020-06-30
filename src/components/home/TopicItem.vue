@@ -7,11 +7,14 @@
             <h2 style="margin: 0;">{{topicInfo.title}}</h2>
             <div>
                 <span>{{topicInfo.type}}</span>
-                <span style="margin-left:5%;">{{topicInfo.tags}}</span>
-                <span style="margin-left:10%;">{{topicInfo.postList[0].time}}</span>
+                <el-tag type="info" v-for="tag in topicInfo.tags" :key="tag">{{tag}}</el-tag>
+                <span style="margin-left:10%;">{{time}}</span>
             </div>
         </el-col>
-        <el-col :span="5"></el-col>
+        <el-col :span="5">
+            <span>{{topicInfo.postList[0].likeNum}}赞同</span>
+            <span>{{topicInfo.postList.length}}帖子</span>
+        </el-col>
         <el-col :span="4"></el-col>
     </el-row>
 </template>
@@ -21,8 +24,34 @@ export default {
     name: "TopicItem",
     props: ["topicInfo"],
     data() {
-        return{
-        avatarUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+        return {
+            avatarUrl:
+                "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+        };
+    },
+    computed: {
+        time: function() {
+            //选取最早的帖子（即楼主发的帖子的时间戳
+            let dateObj = new Date(this.topicInfo.postList[0].time);
+            let year = dateObj.getYear() + 1900;
+            let month = dateObj.getMonth() + 1;
+            let theDate = dateObj.getDate();
+            let hour = dateObj.getHours();
+            let minute = dateObj.getMinutes();
+            let second = dateObj.getSeconds();
+            return (
+                year +
+                "-" +
+                month +
+                "-" +
+                theDate +
+                " " +
+                hour +
+                ":" +
+                minute +
+                ":" +
+                second
+            );
         }
     }
 };

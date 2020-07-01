@@ -16,19 +16,21 @@
                 </div>
                 <div class="first-post-foot">
                     <el-button type="success">赞</el-button>
-                    <el-button type="primary">评论</el-button>
+                    <el-button type="primary" @click="addPost=true">评论</el-button>
                     <el-button type="info" disabled>删除</el-button>
                 </div>
             </div>
         </el-main>
+        <AddPost :show="addPost" :tid="Number(this.$route.params.id)" @closeEvent="addPost = false"></AddPost>
     </el-container>
 </template>
 
 <script>
 import "github-markdown-css/github-markdown.css";
+import AddPost from "@/components/topic/AddPost.vue";
 import VueMarkdown from "vue-markdown";
 export default {
-    components: { VueMarkdown },
+    components: { VueMarkdown, AddPost },
     name: "Topic",
     data() {
         return {
@@ -38,7 +40,8 @@ export default {
             createTime: "",
             mdContent: "",
             loaded: false,
-            type: ""
+            type: "",
+            addPost: false
         };
     },
     beforeMount: function() {

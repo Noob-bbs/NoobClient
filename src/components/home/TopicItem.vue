@@ -89,6 +89,7 @@ h5 {
 .nav-avatar {
   text-align: center;
   margin: 16px 0 0 0;
+  
 }
 
 /* 帖子模块整体样式 */

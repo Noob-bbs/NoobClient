@@ -4,7 +4,7 @@
             <el-avatar class="nav-avatar" :size="45" :src="avatarUrl" style="margin: 10px;"></el-avatar>
         </el-col>
         <el-col :span="12">
-            <router-link :to="`/topic/${topicInfo.id}`">{{topicInfo.title}}</router-link>
+            <router-link class="topic-item-title" :to="`/topic/${topicInfo.id}`">{{topicInfo.title}}</router-link>
             <div>
                 <span>{{topicInfo.type}}</span>
                 <el-tag type="info" v-for="tag in topicInfo.tags" :key="tag">{{tag}}</el-tag>
@@ -58,4 +58,7 @@ export default {
 </script>
 
 <style>
+.topic-item-title {
+    font-size: 1.2em;
+}
 </style>

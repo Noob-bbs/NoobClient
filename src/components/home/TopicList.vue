@@ -1,6 +1,15 @@
 <template>
     <div>
         <TopicItem v-for="item in topicList" :topic-info="item" :key="item.id" />
+        <div class="block" style="text-align: center;">
+            <el-pagination
+                layout="prev, pager, next"
+                :page-size="5"
+                :current-page="page"
+                :total="5 * lastPage"
+                @current-change="changePage"
+            ></el-pagination>
+        </div>
     </div>
 </template>
 
@@ -11,20 +20,22 @@ export default {
     data() {
         return {
             topicList: [],
-            page: 0
+            page: 1,
+            lastPage: 1
         };
     },
     methods: {
         //获取分页后的主题帖列表
         getTopicList() {
             this.$axios
-                .get(`/topic/list?pageSize=10&pageNum=${this.page}`)
+                .get(`/topic/list?pageSize=5&pageNum=${this.page - 1}`)
                 .then(response => {
                     if (response.data.statusCode == 200) {
-                        //console.log(
-                        //    "自动获取" +
-                        //       JSON.stringify(response.data.data.topicList)
-                        //);
+                        console.log(
+                            "自动获取" +
+                                JSON.stringify(response.data.data.lastPage)
+                        );
+                        this.lastPage = response.data.data.lastPage;
                         this.topicList = response.data.data.topicList;
                     } else this.$message.error("获取话题列表失败" + response);
                 })
@@ -32,6 +43,10 @@ export default {
                     console.log(exception);
                     this.$message.error("获取话题列表失败" + exception);
                 });
+        },
+        changePage(page) {
+            this.page = page;
+            this.getTopicList();
         }
     },
     computed: {

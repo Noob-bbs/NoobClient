@@ -34,8 +34,8 @@
         </el-col>
         <el-col :span="6" :offset="1">
             <div class="nav-account" v-if="!this.$store.state.loginStatus">
-                <el-button type="text">登录</el-button>
-                <el-button type="text">注册</el-button>
+                <el-button type="text" @click="login">登录</el-button>
+                <el-button type="text" @click="register">注册</el-button>
             </div>
             <el-dropdown @command="handleCommand" style="margin-top: 15px;" v-else>
                 <el-avatar class="nav-avatar" :size="35" :src="circleUrl"></el-avatar>
@@ -69,6 +69,12 @@ export default {
                         console.log("错误" + failReponse);
                     });
             }
+        },
+        login() {
+            this.$router.push("/login");
+        },
+        register() {
+            this.$router.push("/register");
         }
     },
     data() {

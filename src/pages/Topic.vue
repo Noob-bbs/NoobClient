@@ -2,10 +2,9 @@
     <el-container>
         <el-header>
             <el-breadcrumb separator-class="el-icon-arrow-right" class="topic-header">
-                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-                <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-                <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                <el-breadcrumb-item :to="{ path: '/' }">主页</el-breadcrumb-item>
+                <el-breadcrumb-item>{{type}}</el-breadcrumb-item>
+                <el-breadcrumb-item>{{topicTitle}}</el-breadcrumb-item>
             </el-breadcrumb>
         </el-header>
         <el-main v-show="loaded">
@@ -14,6 +13,11 @@
                 <p class="first-post-subtitle">Author:{{author}} Time:{{this.time}}</p>
                 <div class="markdown-body">
                     <VueMarkdown :source="mdContent"></VueMarkdown>
+                </div>
+                <div class="first-post-foot">
+                    <el-button type="success">赞</el-button>
+                    <el-button type="primary">评论</el-button>
+                    <el-button type="info" disabled>删除</el-button>
                 </div>
             </div>
         </el-main>
@@ -33,7 +37,8 @@ export default {
             author: "",
             createTime: "",
             mdContent: "",
-            loaded: false
+            loaded: false,
+            type: ""
         };
     },
     beforeMount: function() {
@@ -52,6 +57,7 @@ export default {
                     this.author = rd.postList[0].nick;
                     this.createTime = rd.postList[0].time;
                     this.mdContent = rd.postList[0].content;
+                    this.type = rd.type;
                     this.loaded = true;
                 }
             })

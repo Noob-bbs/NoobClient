@@ -13,7 +13,7 @@ export default {
     computed: {}
 };
 </script>
-
+<!--
 <body>
     <el-popover
         placement="bottom"
@@ -28,3 +28,4 @@ export default {
     <el-button type="primary" ;icon=""><h3>用户信息</h3><el-button>
     </el-popover>
 </body>
+-->

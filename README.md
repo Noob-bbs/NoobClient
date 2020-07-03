@@ -1,24 +1,9 @@
-# noobclient
+# 菜鸟论坛前端
+这是我的第一个前端项目，由于对VUE并不熟练所以项目结构有些混乱，项目中使用到的主要技术/框架/模块。
+- VUE
+- VUEX
+- ELEMENT
+- AXIOS
+- VUE ROUTER
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+demo: https://ru.better06.xyz

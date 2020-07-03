@@ -23,6 +23,7 @@ export default {
                 this.postList = response.data.data.postList;
                 //删除第一个post(后端第一个post存的是主题帖内容)
                 this.postList.shift()
+                console.log(JSON.stringify(this.postList))
             })
             .catch(exception => {
                 console.log(JSON.stringify(exception));

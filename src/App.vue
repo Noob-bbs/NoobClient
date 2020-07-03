@@ -2,15 +2,13 @@
     <div id="app">
         <NavBar />
         <router-view class="backtop" />
-        <AddThis publicId="ra-5e6530eddf8f6adf"></AddThis>
         
     </div>
 </template>
 <script>
 import NavBar from "@/components/common/NavBar.vue";
-import AddThis from 'vue-simple-addthis-share'
 export default {
-    components: { NavBar, AddThis }
+    components: { NavBar}
 };
 
 </script>

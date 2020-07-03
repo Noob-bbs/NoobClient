@@ -37,6 +37,7 @@
                                 <i class="el-icon-arrow-down el-icon--right"></i>
                             </el-button>
                             <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command="全部板块">全部板块</el-dropdown-item>
                                 <el-dropdown-item command="板块1">板块1</el-dropdown-item>
                                 <el-dropdown-item command="板块2">板块2</el-dropdown-item>
                                 <el-dropdown-item command="板块3">板块3</el-dropdown-item>

@@ -7,7 +7,7 @@
       <router-link class="post_portrait" :to="`/topic/${topicInfo.id}`">{{topicInfo.title}}</router-link>
       <div class="post_details">
         <span class="post_details_public post_plate">{{topicInfo.type}}</span>
-        <el-tag type="info" v-for="tag in topicInfo.tags" :key="tag">{{tag}}</el-tag>
+        <el-tag size="small" style="margin-left: 10px;" type="info" v-for="tag in topicInfo.tags" :key="tag">{{tag}}</el-tag>
         <span class="post_details_public post_time">{{time}}</span>
       </div>
     </el-col>

@@ -6,6 +6,7 @@ import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import Home from '@/pages/Home.vue'
 import Topic from '@/pages/Topic.vue'
+import UserInfo from '@/pages/UserInfo.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -34,6 +35,11 @@ Vue.use(VueRouter)
     path: '/topic/:id',
     name: 'Topic',
     component: Topic
+  },
+  {
+    path: '/user/:id',
+    name: 'UserInfo',
+    component: UserInfo
   }
 ]
 

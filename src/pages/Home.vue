@@ -4,7 +4,7 @@
             <el-col :span="18">
                 <el-container>
                     <el-header
-                        style="border: 1px; border-color: black; border-style: solid; text-align: left;"
+                        style="border: 0px; border-color: black; border-style: solid; text-align: left;"
                     >
                         <el-button
                             type="primary"
@@ -46,7 +46,7 @@
                         <switch></switch>
                         <!--<SideMenu></SideMenu>-->
                     </el-aside>
-                    <el-main style="border: 2px solid gray; margin-left: 15%;">
+                    <el-main style="border: 0px solid gray; margin-left: 15%;">
                         <!--帖子列表信息-->
                         <TopicList/>
                     </el-main>

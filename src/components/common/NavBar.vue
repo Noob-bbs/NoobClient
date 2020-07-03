@@ -41,7 +41,7 @@
                 <el-avatar class="nav-avatar" :size="35" :src="circleUrl"></el-avatar>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="logout">退出登录</el-dropdown-item>
-                    <el-dropdown-item command="e" divided>蚵仔煎</el-dropdown-item>
+                    <el-dropdown-item command="userInfo" divided>个人信息</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </el-col>
@@ -68,6 +68,8 @@ export default {
                     .catch(failReponse => {
                         console.log("错误" + failReponse);
                     });
+            } else if (command === "userInfo") {
+                this.userInfo();
             }
         },
         login() {
@@ -75,6 +77,9 @@ export default {
         },
         register() {
             this.$router.push("/register");
+        },
+        userInfo() {
+            this.$router.push(`/user/${this.$store.state.user.id}`);
         }
     },
     data() {

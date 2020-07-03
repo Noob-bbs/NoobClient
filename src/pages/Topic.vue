@@ -15,8 +15,21 @@
                     <VueMarkdown :source="mdContent"></VueMarkdown>
                 </div>
                 <div class="first-post-foot">
-                    <el-button type="success">赞</el-button>
-                    <el-button type="primary" @click="addPost=true">评论</el-button>
+                    <el-button
+                        type="success"
+                        v-if="!this.$store.state.loginStatus"
+                        @click="changeModeL"
+                    >登录以点赞</el-button>
+                    <el-button v-else type="success" @click="like">
+                        <i class="el-icon-thumb" />
+                        赞 {{likeNum}}
+                    </el-button>
+                    <el-button
+                        type="primary"
+                        v-if="!this.$store.state.loginStatus"
+                        @click="changeModeL"
+                    >登录以回复</el-button>
+                    <el-button v-else type="primary" @click="addPost=true">评论</el-button>
                     <el-button type="info" disabled>删除</el-button>
                 </div>
             </div>
@@ -35,8 +48,38 @@ import AddPost from "@/components/topic/AddPost.vue";
 import PostList from "@/components/topic/PostList.vue";
 import VueMarkdown from "vue-markdown";
 export default {
-    components: { VueMarkdown, AddPost,PostList },
+    components: { VueMarkdown, AddPost, PostList },
     name: "Topic",
+    methods: {
+        changeModeL() {
+            //记录当前的页面，登陆成功后跳转回来
+            this.$store.commit("setPrevUrl", `/topic/${this.$route.params.id}`);
+            this.$router.replace({ path: "/login" });
+        },
+        like() {
+            //点赞/取消点赞
+            this.$axios
+                .get(
+                    `/post/addlike?userId=${this.$store.state.user.id}&postId=${this.firstPostId}`
+                )
+                .then(response => {
+                    console.log("点赞结果");
+                    if (response.data.statusCode == "200") {
+                        this.likeNum = response.data.data;
+                        this.$message.success("成功点赞");
+                    } else if (response.data.statusCode == "201") {
+                        this.likeNum = response.data.data;
+                        this.$message.success("你已经点过赞了哦，取消点赞");
+                    } else {
+                        this.$message.error("点赞出错");
+                    }
+                    console.log(JSON.stringify(response));
+                })
+                .catch(exception => {
+                    console.log(JSON.stringify(exception));
+                });
+        }
+    },
     data() {
         return {
             displayContent: "",
@@ -46,7 +89,9 @@ export default {
             mdContent: "",
             loaded: false,
             type: "",
-            addPost: false
+            addPost: false,
+            likeNum: 0,
+            firstPostId: 0
         };
     },
     beforeMount: function() {
@@ -64,6 +109,7 @@ export default {
                     this.author = rd.postList[0].nick;
                     this.createTime = rd.postList[0].time;
                     this.mdContent = rd.postList[0].content;
+                    this.firstPostId = rd.postList[0].id;
                     this.type = rd.type;
                     this.loaded = true;
                 }

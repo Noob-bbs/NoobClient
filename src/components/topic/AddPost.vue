@@ -45,6 +45,11 @@ export default {
                 .post("/post/addpost", postObj)
                 .then(() => {
                     console.log("回帖成功");
+                    this.$message.success("回帖成功")
+                    this.content = ""
+                    this.$emit("closeEvent");
+                    //还要刷新一下页面
+                    this.$store.commit("postListUpdate", true);
                     //返回的列表中的第一个是原帖，除去即可剩下的用来刷新展示的回帖列表
                     //console.log(JSON.stringify(response.data.data.postList));
                 })

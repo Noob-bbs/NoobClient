@@ -73,8 +73,23 @@ export default {
                                 duration: 5000
                             });
                             this.loading = false;
-                            this.$store.commit("login", successResponse.data.data);
-                            this.$router.replace({ path: "/" });
+                            this.$store.commit(
+                                "login",
+                                successResponse.data.data
+                            );
+                            //注意，如果之前保存了页面的话，跳转回原来的页面
+                            if (this.$store.state.preUrl === "") {
+                                this.$router.replace({ path: "/" });
+                            } else {
+                                console.log(
+                                    "跳转到之前的页面" +
+                                        this.$store.state.prevUrl
+                                );
+                                this.$router.replace({
+                                    path: this.$store.state.prevUrl
+                                });
+                                this.$store.commit("setPrevUrl", "");
+                            }
                             console.log("登陆成功");
                         } else {
                             this.loading = false;

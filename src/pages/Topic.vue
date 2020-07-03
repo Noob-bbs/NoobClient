@@ -16,7 +16,12 @@
                 </div>
                 <div class="first-post-foot">
                     <el-button type="success">赞</el-button>
-                    <el-button type="primary" @click="addPost=true">评论</el-button>
+                    <el-button
+                        type="primary"
+                        v-if="!this.$store.state.loginStatus"
+                        @click="changeModeL"
+                    >登录以回复</el-button>
+                    <el-button v-else type="primary" @click="addPost=true">评论</el-button>
                     <el-button type="info" disabled>删除</el-button>
                 </div>
             </div>
@@ -35,8 +40,15 @@ import AddPost from "@/components/topic/AddPost.vue";
 import PostList from "@/components/topic/PostList.vue";
 import VueMarkdown from "vue-markdown";
 export default {
-    components: { VueMarkdown, AddPost,PostList },
+    components: { VueMarkdown, AddPost, PostList },
     name: "Topic",
+    methods: {
+        changeModeL() {
+            //记录当前的页面，登陆成功后跳转回来
+            this.$store.commit("setPrevUrl",`/topic/${this.$route.params.id}`)
+            this.$router.replace({ path: "/login" });
+        }
+    },
     data() {
         return {
             displayContent: "",

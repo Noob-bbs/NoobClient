@@ -40,11 +40,13 @@ export default {
                 nick: this.$store.state.user.nick,
                 topicId: this.tid
             };
-            console.log("回帖" + JSON.stringify(postObj));
+            //console.log("回帖" + JSON.stringify(postObj));
             this.$axios
                 .post("/post/addpost", postObj)
-                .then(response => {
-                    console.log(JSON.stringify(response));
+                .then(() => {
+                    console.log("回帖成功");
+                    //返回的列表中的第一个是原帖，除去即可剩下的用来刷新展示的回帖列表
+                    //console.log(JSON.stringify(response.data.data.postList));
                 })
                 .catch(exception => {
                     console.log(JSON.stringify(exception));

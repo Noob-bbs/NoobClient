@@ -20,6 +20,10 @@
                     <el-button type="info" disabled>删除</el-button>
                 </div>
             </div>
+            <div>
+                回帖列表
+                <PostList :topicId="this.$route.params.id"></PostList>
+            </div>
         </el-main>
         <AddPost :show="addPost" :tid="Number(this.$route.params.id)" @closeEvent="addPost = false"></AddPost>
     </el-container>
@@ -28,9 +32,10 @@
 <script>
 import "github-markdown-css/github-markdown.css";
 import AddPost from "@/components/topic/AddPost.vue";
+import PostList from "@/components/topic/PostList.vue";
 import VueMarkdown from "vue-markdown";
 export default {
-    components: { VueMarkdown, AddPost },
+    components: { VueMarkdown, AddPost,PostList },
     name: "Topic",
     data() {
         return {
@@ -52,7 +57,6 @@ export default {
                 `/post/getlist?pageSize=100&pageNum=0&topicId=${this.$route.params.id}`
             )
             .then(response => {
-                console.log("TOPIC:" + JSON.stringify(response));
                 if (response.data.statusCode == 200) {
                     let rd = response.data.data;
                     this.displayContent = rd;

@@ -17,6 +17,7 @@
 import TopicItem from "./TopicItem.vue";
 export default {
     components: { TopicItem },
+    props: ["section"],
     data() {
         return {
             topicList: [],
@@ -26,9 +27,16 @@ export default {
     },
     methods: {
         //获取分页后的主题帖列表
-        getTopicList() {
+        getTopicList(sec) {
+            let url = "";
+            if (sec == "全部板块" || sec == "") {
+                url = `/topic/list?pageSize=6&pageNum=${this.page - 1}`;
+            } else {
+                url = `/topic/listbytype?pageSize=6&pageNum=${this.page -
+                    1}&type=${sec}`;
+            }
             this.$axios
-                .get(`/topic/list?pageSize=6&pageNum=${this.page - 1}`)
+                .get(url)
                 .then(response => {
                     if (response.data.statusCode == 200) {
                         console.log(
@@ -52,6 +60,9 @@ export default {
     computed: {
         ifNeedUpdate() {
             return this.$store.state.topicListUpdate;
+        },
+        showSec() {
+            return this.$store.state.showSec;
         }
     },
     watch: {
@@ -62,11 +73,16 @@ export default {
                 this.getTopicList();
                 this.$store.commit("topicListUpdate", false);
             }
+        },
+        showSec(val) {
+            console.log("watch板块变化" + val);
+            this.page = 1;
+            this.getTopicList(val);
         }
     },
     beforeMount: function() {
         //模板挂载后请求
-        this.getTopicList();
+        this.getTopicList(this.showSec);
     }
 };
 </script>

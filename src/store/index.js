@@ -9,7 +9,9 @@ export default new Vuex.Store({
     loginStatus: false,
     topicListUpdate: false,
     postListUpdate: false,
-    prevUrl: ""
+    prevUrl: "",
+    showSec: "全部板块"
+
   },
   mutations: {
     login (state, user) {
@@ -34,6 +36,10 @@ export default new Vuex.Store({
       //用于登陆后跳转回之前的界面
       console.log("记录当前页面" + url)
       state.prevUrl = url
+    },
+    changeSec(state,sec){
+      console.log("mutation板块切换" + sec)
+      state.showSec = sec
     }
 
   }

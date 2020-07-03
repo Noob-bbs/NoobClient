@@ -37,9 +37,9 @@
                                 <i class="el-icon-arrow-down el-icon--right"></i>
                             </el-button>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item>板块1</el-dropdown-item>
-                                <el-dropdown-item>板块2</el-dropdown-item>
-                                <el-dropdown-item>板块3</el-dropdown-item>
+                                <el-dropdown-item command="板块1">板块1</el-dropdown-item>
+                                <el-dropdown-item command="板块2">板块2</el-dropdown-item>
+                                <el-dropdown-item command="板块3">板块3</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-header>
@@ -49,7 +49,7 @@
                     </el-aside>
                     <el-main style="border: 0px solid gray; margin-left: 15%;">
                         <!--帖子列表信息-->
-                        <TopicList/>
+                        <TopicList :section="showSection"/>
                     </el-main>
                 </el-container>
             </el-col>
@@ -79,7 +79,9 @@ export default {
             this.showTopic = command;
         },
         handleSectionSelect(command) {
-            console.log("command:" + command);
+            console.log("板块切换:" + command);
+            this.showSection = command;
+            this.$store.commit("changeSec",command)
         },
         changeModeL() {
             this.$router.replace({ path: "/login" });

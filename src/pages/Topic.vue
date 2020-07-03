@@ -36,17 +36,17 @@
                         @click="addPost=true"
                         style="margin-right: 10px;"
                     >评论</el-button>
-                    
-                        <el-tooltip
-                            content="您不是该帖子的主人或者管理员"
-                            placement="bottom"
-                            effect="light"
-                            :disabled="canDel"
-                        >
-                            <span>
-                                <el-button type="info" :disabled="!canDel" @click="deleteTopic">删除</el-button>
-                            </span>
-                        </el-tooltip>
+
+                    <el-tooltip
+                        content="您不是该帖子的主人或者管理员"
+                        placement="bottom"
+                        effect="light"
+                        :disabled="canDel"
+                    >
+                        <span>
+                            <el-button type="info" :disabled="!canDel" @click="deleteTopic">删除</el-button>
+                        </span>
+                    </el-tooltip>
                 </div>
             </div>
             <div>
@@ -159,6 +159,7 @@ export default {
                     this.firstPostId = rd.postList[0].id;
                     this.type = rd.type;
                     this.loaded = true;
+                    this.likeNum = rd.postList[0].likeNum;
                     this.userId = rd.userId;
                     //检测当前用户是否有权限删除帖子（帖子的发帖者或者管理员可以删除
                     this.checkPermission();
@@ -211,5 +212,8 @@ export default {
 }
 .first-post-title {
     text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
 </style>

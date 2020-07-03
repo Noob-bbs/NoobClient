@@ -1,7 +1,7 @@
 <template>
   <el-row class="topic-item">
     <el-col class="nav-avatar" :span="3">
-      <el-avatar :size="45" :src="avatarUrl" style="margin: 10px;"></el-avatar>
+      <el-avatar :size="45" :src='require("@/assets/avatar/icon-test_" + Math.round(Math.random() * 10) + ".png")' style="margin: 10px;"></el-avatar>
     </el-col>
     <el-col :span="12">
       <router-link class="post_portrait" :to="`/topic/${topicInfo.id}`">{{topicInfo.title}}</router-link>

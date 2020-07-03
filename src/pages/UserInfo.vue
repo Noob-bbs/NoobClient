@@ -1,31 +1,53 @@
 <!--个人信息组件-->
 <template>
     <!--使用时间线展示,现在只获取了当前用户的id，用这个id去请求服务器获取该用户最近的发帖，用时间线展示-->
-    <h1>{{Number(this.$route.params.id)}}</h1>
+    <el-container style="height: 100%;">
+        <el-header style="margin-top: 5%;">
+            <h1 style="text-align: center;">用户信息</h1>
+        </el-header>
+        <el-main>
+            <el-avatar class="uesr_portrait" :size="70" :src="avatarUrl"></el-avatar>
+        </el-main>
+    </el-container>
 </template>
 
 <script>
 export default {
     name: "UserInfo",
     data() {
-        return {};
+        return {
+            user: {},
+            loaded: false,
+            avatarUrl: ""
+        };
     },
-    computed: {}
+    computed: {},
+    methods: {
+        getUserInfo() {
+            this.$axios
+                .get(`/getuserinfo?userId=${this.$route.params.id}`)
+                .then(re => {
+                    console.log(
+                        "USER INFO" +
+                            JSON.stringify(re.data.data.user) +
+                            "\n_--------------"
+                    );
+                    if (re.data.statusCode == 200) {
+                        this.user = re.data.data;
+                        let num = re.data.data.user.avatarUrl;
+                        this.avatarUrl = require('@/assets/avatar/icon-test_' + num + '.png');
+                        console.log("头像" + this.avatarUrl);
+                    }
+                })
+                .catch(ex => {
+                    console.log(JSON.stringify(ex));
+                });
+        }
+    },
+    beforeMount: function() {
+        this.getUserInfo();
+    }
 };
 </script>
-<!--
-<body>
-    <el-popover
-        placement="bottom"
-        width="200"
-        trigger="click"
-        <a href="" target="_blank">用户信息</a>
-        <a href="" target="_blank">登出</a>
-    >
-    <a href="#"  style="width:100px; height:100px; border-radius:100%; overflow:hidden;">
-        <img src="head.jpg">
-    </a>
-    <el-button type="primary" ;icon=""><h3>用户信息</h3><el-button>
-    </el-popover>
-</body>
--->
+<style scoped>
+</style>

@@ -37,8 +37,9 @@
                                 <i class="el-icon-arrow-down el-icon--right"></i>
                             </el-button>
                             <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item>黄金糕</el-dropdown-item>
-                                <el-dropdown-item>狮子头</el-dropdown-item>
+                                <el-dropdown-item>板块1</el-dropdown-item>
+                                <el-dropdown-item>板块2</el-dropdown-item>
+                                <el-dropdown-item>板块3</el-dropdown-item>
                             </el-dropdown-menu>
                         </el-dropdown>
                     </el-header>
@@ -52,7 +53,7 @@
                     </el-main>
                 </el-container>
             </el-col>
-            <el-col :span="6" style="border: 1px solid black; margin-top: 7%;">AAAA</el-col>
+            <!--<el-col :span="6" style="border: 1px solid black; margin-top: 7%;">AAAA</el-col>-->
         </el-row>
         <AddTopic :show="addTopic" @cancelEvent="handleCancelEvent" @closeDrawer="addTopic = false"></AddTopic>
     </div>

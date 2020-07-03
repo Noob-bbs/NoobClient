@@ -28,7 +28,7 @@ export default {
         //获取分页后的主题帖列表
         getTopicList() {
             this.$axios
-                .get(`/topic/list?pageSize=5&pageNum=${this.page - 1}`)
+                .get(`/topic/list?pageSize=6&pageNum=${this.page - 1}`)
                 .then(response => {
                     if (response.data.statusCode == 200) {
                         console.log(

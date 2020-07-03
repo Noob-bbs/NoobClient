@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="post-list">
+        <el-divider content-position="left">主题帖回复</el-divider>
         <PostItem v-for="(post,index) in postList" :post="post" :key="post.id" :floor="index"></PostItem>
     </div>
 </template>
@@ -57,4 +58,7 @@ export default {
 </script>
 
 <style>
+.post-list {
+    margin: 5% 10% 5% 10%;
+}
 </style>

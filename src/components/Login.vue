@@ -73,12 +73,16 @@ export default {
                                 duration: 5000
                             });
                             this.loading = false;
+                            console.log(
+                                "成功登录" +
+                                    JSON.stringify(successResponse.data.data)
+                            );
                             this.$store.commit(
                                 "login",
                                 successResponse.data.data
                             );
                             //注意，如果之前保存了页面的话，跳转回原来的页面
-                            if (this.$store.state.preUrl === "") {
+                            if (this.$store.state.prevUrl == "") {
                                 this.$router.replace({ path: "/" });
                             } else {
                                 console.log(

@@ -28,13 +28,28 @@
                         type="primary"
                         v-if="!this.$store.state.loginStatus"
                         @click="changeModeL"
+                        style="margin-right: 10px;"
                     >登录以回复</el-button>
-                    <el-button v-else type="primary" @click="addPost=true">评论</el-button>
-                    <el-button type="info" disabled>删除</el-button>
+                    <el-button
+                        v-else
+                        type="primary"
+                        @click="addPost=true"
+                        style="margin-right: 10px;"
+                    >评论</el-button>
+                    
+                        <el-tooltip
+                            content="您不是该帖子的主人或者管理员"
+                            placement="bottom"
+                            effect="light"
+                            :disabled="canDel"
+                        >
+                            <span>
+                                <el-button type="info" :disabled="!canDel" @click="deleteTopic">删除</el-button>
+                            </span>
+                        </el-tooltip>
                 </div>
             </div>
             <div>
-                回帖列表
                 <PostList :topicId="this.$route.params.id"></PostList>
             </div>
         </el-main>
@@ -78,6 +93,36 @@ export default {
                 .catch(exception => {
                     console.log(JSON.stringify(exception));
                 });
+        },
+        checkPermission() {
+            //检查权限
+            if (this.userId == this.$store.state.user.id) {
+                console.log("文章主人，可删帖");
+                this.canDel = true;
+            } else if (this.$store.state.user.roleSet[0].roleName == "ADMIN") {
+                console.log("管理员，可删帖");
+                this.canDel = true;
+            } else {
+                console.log(this.userId + "------" + this.$store.state.user.id);
+            }
+        },
+        deleteTopic() {
+            //删帖,同时后端也要检验，其实更安全的做法 用户id应该直接从session里面读取
+            this.$axios
+                .get(
+                    `/topic/deletetopic?userId=${this.$store.state.user.id}&topicId=${this.$route.params.id}`
+                )
+                .then(re => {
+                    if (re.data.statusCode == 200) {
+                        this.$message.success("删帖成功");
+                        this.$router.replace({ path: "/" });
+                    } else {
+                        this.$message.error("删帖失败" + re.data.data);
+                    }
+                })
+                .catch(ex => {
+                    this.$message.error("删帖失败" + JSON.stringify(ex));
+                });
         }
     },
     data() {
@@ -91,7 +136,9 @@ export default {
             type: "",
             addPost: false,
             likeNum: 0,
-            firstPostId: 0
+            firstPostId: 0,
+            canDel: false,
+            userId: 0
         };
     },
     beforeMount: function() {
@@ -112,6 +159,9 @@ export default {
                     this.firstPostId = rd.postList[0].id;
                     this.type = rd.type;
                     this.loaded = true;
+                    this.userId = rd.userId;
+                    //检测当前用户是否有权限删除帖子（帖子的发帖者或者管理员可以删除
+                    this.checkPermission();
                 }
             })
             .catch(exception => {

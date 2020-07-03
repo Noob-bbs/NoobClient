@@ -29,7 +29,7 @@ export default {
         //获取分页后的主题帖列表
         getTopicList(sec) {
             let url = "";
-            if (sec == "全部板块" || sec == "") {
+            if (sec == "全部板块" || sec == "" || sec == undefined) {
                 url = `/topic/list?pageSize=6&pageNum=${this.page - 1}`;
             } else {
                 url = `/topic/listbytype?pageSize=6&pageNum=${this.page -

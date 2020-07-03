@@ -24,7 +24,7 @@
                     <el-menu-item index="2-2">板块2</el-menu-item>
                     <el-menu-item index="2-3">板块3</el-menu-item>
                 </el-submenu>
-                <el-menu-item index="3">
+                <el-menu-item index="tags">
                     <i class="el-icon-collection-tag" />标签
                 </el-menu-item>
                 <el-menu-item index="4">
@@ -38,7 +38,11 @@
                 <el-button type="text" @click="register">注册</el-button>
             </div>
             <el-dropdown @command="handleCommand" style="margin-top: 15px;" v-else>
-                <el-avatar class="nav-avatar" :size="35" :src="require('@/assets/avatar/icon-test_0.png')"></el-avatar>
+                <el-avatar
+                    class="nav-avatar"
+                    :size="35"
+                    :src="require('@/assets/avatar/icon-test_0.png')"
+                ></el-avatar>
                 <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="logout">退出登录</el-dropdown-item>
                     <el-dropdown-item command="userInfo" divided>个人信息</el-dropdown-item>

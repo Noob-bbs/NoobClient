@@ -1,16 +1,14 @@
 <template>
     <div id="app">
         <NavBar />
-        <router-view class="backtop" />
-        
+        <router-view class="backtop" :key="$route.fullPath" />
     </div>
 </template>
 <script>
 import NavBar from "@/components/common/NavBar.vue";
 export default {
-    components: { NavBar}
+    components: { NavBar }
 };
-
 </script>
 <style>
 body {

@@ -7,6 +7,7 @@ import Register from '../components/Register.vue'
 import Home from '@/pages/Home.vue'
 import Topic from '@/pages/Topic.vue'
 import UserInfo from '@/pages/UserInfo.vue'
+import TagsPage from '@/pages/TagsPage.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -40,6 +41,11 @@ Vue.use(VueRouter)
     path: '/user/:id',
     name: 'UserInfo',
     component: UserInfo
+  },
+  {
+    path: '/tags/:tag?',
+    name: 'TagsPage',
+    component: TagsPage
   }
 ]
 
